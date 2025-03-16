@@ -97,7 +97,7 @@ export default function About() {
 
             <div className='w-fit flex flex-wrap gap-4'>
               <a
-                href='https://github.com/BeastlyMC956'
+                href='https://github.com/andre-eriksson'
                 target='_blank'
                 rel='noopener noreferrer'
                 className='p-2 shadow-[5px_5px_0px_0px] dark:shadow-[5px_5px_0px_0px] shadow-black dark:shadow-red-300 aspect-square flex items-center justify-center border-2 border-black dark:bg-white transition-all duration-300 hover:shadow-[7px_7px_0px_0px]'

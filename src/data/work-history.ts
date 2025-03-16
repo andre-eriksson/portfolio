@@ -5,6 +5,9 @@ export type PositionType =
   | 'contract'
   | 'freelance'
 
+/**
+ * WorkPosition type representing a position held at a company, can be multiple.
+ */
 export type WorkPosition = {
   id: string
   title: string
@@ -18,7 +21,11 @@ export type WorkPosition = {
   type: PositionType
 }
 
+/**
+ * Company type representing a company in the work history.
+ */
 export type Company = {
+  // TODO: Add more fields as needed, example: company size, founded year, etc.
   id: string
   name: string
   logo: string
