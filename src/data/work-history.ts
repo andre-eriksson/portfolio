@@ -29,6 +29,7 @@ export type Company = {
   id: string
   name: string
   logo: string
+  image: string
   industry: string
   location: string
   website: string
@@ -39,7 +40,8 @@ export const workHistoryData: Company[] = [
   {
     id: 'medieteknik',
     name: 'Chapter of Media Technology',
-    logo: '/medieteknik.png',
+    logo: '/medieteknik_logo.png',
+    image: '/medieteknik.jpeg',
     industry: 'Web Development and IT',
     location: 'Stockholm, Sweden',
     website: 'https://www.medieteknik.com',

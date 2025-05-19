@@ -115,15 +115,21 @@ export default function Experience() {
               >
                 <motion.div
                   className={`relative z-10 p-6 rounded-none border-4 dark:text-white border-black hover:translate-x-1 hover:translate-y-1 hover:shadow-[4px_4px_0px_0px] shadow-black dark:shadow-white transition-all duration-200 ${
-                    expandedCompany === company.id ?
-                    (company.id === 'medieteknik'
-                      ? 'bg-yellow-100 dark:bg-yellow-400/40'
-                      : [
-                          companyIndex % 3 === 0 ? 'bg-pink-200 dark:bg-pink-400/40' : '',
-                          companyIndex % 3 === 1 ? 'bg-blue-200 dark:bg-blue-400/40' : '',
-                          companyIndex % 3 === 2 ? 'bg-green-200 dark:bg-green-400/40' : '',
-                        ].join(''))
-                        : 'bg-white dark:bg-neutral-950'
+                    expandedCompany === company.id
+                      ? company.id === 'medieteknik'
+                        ? 'bg-yellow-100 dark:bg-yellow-400/40'
+                        : [
+                            companyIndex % 3 === 0
+                              ? 'bg-pink-200 dark:bg-pink-400/40'
+                              : '',
+                            companyIndex % 3 === 1
+                              ? 'bg-blue-200 dark:bg-blue-400/40'
+                              : '',
+                            companyIndex % 3 === 2
+                              ? 'bg-green-200 dark:bg-green-400/40'
+                              : '',
+                          ].join('')
+                      : 'bg-white dark:bg-neutral-950'
                   }`}
                   onClick={() => toggleCompany(company.id)}
                 >

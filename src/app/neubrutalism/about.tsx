@@ -4,7 +4,7 @@ import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 
-export default function About() {
+export default function AboutNeubrutalism() {
   return (
     <section className='h-fit w-full px-4 bg-red-50 py-20 z-50 dark:bg-slate-900 dark:text-white'>
       <div className='container mx-auto'>
