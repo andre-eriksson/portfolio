@@ -77,9 +77,14 @@ export default function FloatingElements({ currentSection }: Props) {
         />
         <motion.div
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1, background: colors.primary }}
-          transition={{ duration: 0.2, delay: 0.4 }}
-          className='absolute bottom-[15%] right-[15%] h-28 w-4'
+          animate={{
+            opacity: 1,
+            background: colors.primary,
+            bottom: currentSection === 'about' ? '20%' : '15%',
+            right: currentSection === 'about' ? '25%' : '15%',
+          }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className='absolute h-28 w-4'
         />
         <motion.div
           initial={{ opacity: 0 }}

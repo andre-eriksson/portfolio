@@ -7,9 +7,12 @@ interface Part {
   skills: string[]
 }
 
-interface Project {
+export interface Project {
+  id: number
   title: string
   description: string
+  startDate?: string
+  endDate?: string
   image: string
   githubLink?: string
   liveLink?: string
@@ -21,10 +24,12 @@ interface Project {
 
 export const projects: Project[] = [
   {
-    title: 'Medieteknik',
+    id: 1,
+    title: 'Medieteknik Website',
     description:
-      "A complete redesign of the Medieteknik website and systems, from the ground up. A fullstack project aimed to improve the usability and accessibility of the chapter's website, while also reducing the costs of the systems used by the chapter. New features include a new design, event calendar, social media integration, recruitment listings for chapter committees and more!",
+      "A solo project focused on a complete redesign of the Medieteknik website and systems, from the ground up. A fullstack project aimed to improve the usability and accessibility of the chapter's website. New features include a new design, event calendar, social media integration, recruitment listings for chapter committees and more!",
     image: '/medieteknik.jpeg',
+    startDate: '2024-01-01',
     skills: ['Python', 'TypeScript', 'Next.js', 'PostgreSQL', 'Tailwind CSS'],
     githubLink: 'https://github.com/medieteknik-kth/medieteknik.com',
     liveLink: 'https://medieteknik.com',

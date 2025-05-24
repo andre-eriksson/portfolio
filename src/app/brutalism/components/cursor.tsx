@@ -24,18 +24,22 @@ function useMousePosition() {
   return mousePosition
 }
 
-export default function CursorTrail() {
+interface Props {
+  currentSection: string
+}
+
+export default function CursorTrail({ currentSection }: Props) {
   const { x, y } = useMousePosition()
 
   return (
     <div className='pointer-events-none fixed inset-0 z-[100]'>
       <motion.div
-        className='absolute h-2 w-2 rounded-full bg-black'
+        className={`absolute h-4 w-4 rounded-full ${currentSection === 'experience' ? 'bg-white' : 'bg-black'}`}
         initial={{ opacity: 0.8 }}
         animate={{
           x: x,
           y: y,
-          opacity: 0.8,
+          opacity: 1,
         }}
         transition={{ duration: 0 }}
         style={{ left: -4, top: -4 }}

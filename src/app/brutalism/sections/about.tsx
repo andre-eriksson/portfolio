@@ -1,6 +1,5 @@
 'use client'
 
-import Grid from '@/app/brutalism/components/grid'
 import {
   ClockIcon,
   EnvelopeIcon,
@@ -38,6 +37,7 @@ export default function AboutBrutalism() {
       clearInterval(timeInterval)
     }
   }, [])
+
   const scrollToNext = () => {
     const nextSection = document.getElementById('project-one')
     if (nextSection) {
@@ -45,10 +45,15 @@ export default function AboutBrutalism() {
     }
   }
 
+  const scrollToExperience = () => {
+    const experienceSection = document.getElementById('experience')
+    if (experienceSection) {
+      experienceSection.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   return (
     <div className='relative flex h-full w-full items-center justify-center bg-white text-black overflow-hidden'>
-      <Grid />
-
       <div className='container mx-auto px-6 z-50'>
         <div className='max-w-5xl mx-auto'>
           <motion.div
@@ -180,15 +185,19 @@ export default function AboutBrutalism() {
                 e.preventDefault()
                 scrollToNext()
               }}
-              className='brutalist-button bg-black text-white px-6 py-3 font-mono uppercase hover:bg-white hover:text-black border-2 border-black transition-colors duration-300'
+              className='brutalist-button bg-black text-white px-6 py-3 font-mono uppercase hover:bg-white hover:text-black border-2 border-black transition-colors duration-300 cursor-none'
             >
               View Projects (1)
             </Link>
             <Link
-              href='#contact'
-              className='brutalist-button bg-white text-black px-6 py-3 font-mono uppercase hover:bg-black hover:text-white border-2 border-black transition-colors duration-300'
+              href='#experience'
+              className='brutalist-button bg-white text-black px-6 py-3 font-mono uppercase hover:bg-black hover:text-white border-2 border-black transition-colors duration-300 cursor-none'
+              onClick={(e) => {
+                e.preventDefault()
+                scrollToExperience()
+              }}
             >
-              Contact
+              Experience
             </Link>
           </motion.div>
 
@@ -201,14 +210,14 @@ export default function AboutBrutalism() {
             <Link
               href='https://github.com'
               target='_blank'
-              className='border-2 border-black p-2 hover:bg-black hover:text-white transition-colors duration-300'
+              className='border-2 bg-white border-black p-2 hover:bg-black hover:text-white transition-colors duration-300 cursor-none'
             >
               <Github className='size-6' />
             </Link>
             <Link
               href='https://linkedin.com'
               target='_blank'
-              className='border-2 border-black p-2 hover:bg-black hover:text-white transition-colors duration-300'
+              className='border-2 bg-white border-black p-2 hover:bg-black hover:text-white transition-colors duration-300 cursor-none'
             >
               <LinkedIn className='size-6' />
             </Link>

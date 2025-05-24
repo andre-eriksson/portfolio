@@ -1,5 +1,4 @@
 'use client'
-import Grid from '@/app/brutalism/components/grid'
 import { workHistoryData } from '@/data/work-history'
 import {
   CalendarIcon,
@@ -17,8 +16,6 @@ export default function ExperienceSection() {
   const inView = useInView(ref)
   return (
     <div className='relative flex h-full w-full items-center bg-[#121212] text-white overflow-hidden'>
-      <Grid />
-
       <motion.div
         ref={ref}
         initial={{ opacity: 0 }}
