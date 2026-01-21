@@ -1,0 +1,170 @@
+---
+import "../styles/global.css";
+
+const GITHUB_USERNAME = "andre-eriksson";
+
+const query = `
+  query {
+    viewer {
+      contributionsCollection {
+        contributionCalendar {
+          totalContributions
+          weeks {
+            contributionDays {
+              contributionCount
+              date
+              color
+            }
+          }
+        }
+      }
+    }
+  }
+  `;
+
+const response = await fetch("https://api.github.com/graphql", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${import.meta.env.GITHUB_TOKEN}`,
+    },
+    body: JSON.stringify({
+        query,
+    }),
+});
+
+const json = await response.json();
+
+// Be critical of the data quality/errors
+if (json.errors) {
+    console.error(json.errors);
+    throw new Error("Failed to fetch GitHub data");
+}
+
+const calendar = json.data.viewer.contributionsCollection.contributionCalendar;
+
+interface Week {
+    contributionDays: {
+        color: string;
+        date: string;
+        contributionCount: number;
+    }[];
+}
+
+// Logic to extract month labels and their column offsets
+const monthLabels = calendar.weeks.reduce(
+    (
+        acc: {
+            index: number;
+            month: string;
+        }[],
+        week: Week,
+        i: number,
+    ) => {
+        const firstDay = week.contributionDays[0];
+        if (!firstDay) return acc;
+
+        const month = new Date(firstDay.date).toLocaleString("default", {
+            month: "short",
+        });
+        const prevMonth = acc.length > 0 ? acc[acc.length - 1].month : null;
+
+        if (month !== prevMonth) {
+            acc.push({ month, index: i });
+        }
+        return acc;
+    },
+    [],
+);
+---
+
+<section>
+    <div class="text-xs w-fit font-sans">
+        <div class="grid grid-cols-[repeat(53,1fr)] mb-1 ml-6">
+            {
+                monthLabels.map((m: { index: number; month: string }) => (
+                    <span style={`grid-column: ${m.index + 1}`}>{m.month}</span>
+                ))
+            }
+        </div>
+
+        <div class="flex gap-2">
+            <div class="flex flex-col justify-around pb-1 text-neutral-600">
+                <span>Mon</span>
+                <span>Wed</span>
+                <span>Fri</span>
+            </div>
+
+            <div class="flex gap-2">
+                {
+                    calendar.weeks.map((week: Week) => (
+                        <div class="flex flex-col gap-1">
+                            {week.contributionDays.map((day) => (
+                                <div
+                                    class="day size-2.5 rounded-xs relative cursor-pointer"
+                                    style={`background-color: ${day.color};`}
+                                    data-tooltip={`${day.contributionCount} contributions on ${day.date}`}
+                                />
+                            ))}
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+
+        <div class="flex justify-between">
+            <h3 class="text-neutral-600 text-sm">
+                {calendar.totalContributions} contributions in the last year
+            </h3>
+            <div
+                class="flex items-center gap-1 justify-end mt-2.5 text-neutral-600"
+            >
+                <span>Less</span>
+                <div
+                    class="size-2.5 rounded-xs relative, cursor-pointer"
+                    style="background-color: var(--color-calendar-graph-day-bg)"
+                >
+                </div>
+                <div
+                    class="size-2.5 rounded-xs relative, cursor-pointer"
+                    style="background-color: var(--color-calendar-graph-day-L1-bg)"
+                >
+                </div>
+                <div
+                    class="size-2.5 rounded-xs relative, cursor-pointer"
+                    style="background-color: var(--color-calendar-graph-day-L2-bg)"
+                >
+                </div>
+                <div
+                    class="size-2.5 rounded-xs relative, cursor-pointer"
+                    style="background-color: var(--color-calendar-graph-day-L3-bg)"
+                >
+                </div>
+                <div
+                    class="size-2.5 rounded-xs relative, cursor-pointer"
+                    style="background-color: var(--color-calendar-graph-day-L4-bg)"
+                >
+                </div>
+                <span>More</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Tooltip logic */
+    .day:hover::after {
+        content: attr(data-tooltip);
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #333;
+        color: #fff;
+        padding: 4px 8px;
+        border-radius: 4px;
+        white-space: nowrap;
+        z-index: 10;
+        margin-bottom: 5px;
+    }
+</style>

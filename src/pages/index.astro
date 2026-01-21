@@ -1,0 +1,25 @@
+---
+import Header from "../components/Header.astro";
+import Github from "../components/GithubMap.astro";
+import Introduction from "../components/Introduction.astro";
+import Socials from "../components/Socials.astro";
+import Layout from "../layouts/Layout.astro";
+import Experience from "../components/Experience.astro";
+import Job from "../components/Job.astro";
+import { jobs } from "../data/jobs";
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+---
+
+<Layout>
+    <header class="flex flex-col gap-4">
+        <Header />
+        <Socials />
+    </header>
+    <Introduction />
+    <Github />
+    <Experience>
+        {jobs.map((job) => <Job job={job} />)}
+    </Experience>
+</Layout>
