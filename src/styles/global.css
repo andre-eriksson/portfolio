@@ -1,8 +1,25 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap");
+
 :root {
     --color-calendar-graph-day-bg: #ebedf0;
     --color-calendar-graph-day-L1-bg: #9be9a8;
     --color-calendar-graph-day-L2-bg: #40c463;
     --color-calendar-graph-day-L3-bg: #30a14e;
     --color-calendar-graph-day-L4-bg: #216e39;
+}
+
+.google-sans-400 {
+    font-family: "Google Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings: "GRAD" 0;
+}
+
+.google-sans-code-400 {
+    font-family: "Google Sans Code", monospace;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
 }

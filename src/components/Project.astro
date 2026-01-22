@@ -1,0 +1,29 @@
+---
+import type { Project } from "../data/projects";
+import "../styles/global.css";
+const { project } = Astro.props as { project: Project };
+---
+
+<li class="w-full flex flex-col">
+    <div class="flex justify-between items-baseline">
+        <a
+            href={project.link}
+            target="_blank"
+            class="font-semibold text-neutral-900 hover:underline decoration-neutral-400 underline-offset-4"
+        >
+            {project.title}
+        </a>
+    </div>
+    <p class="text-neutral-600 text-sm mt-1">
+        {project.description}
+    </p>
+    <div class="flex flex-wrap gap-2 mt-2">
+        {
+            project.techStack.map((tech) => (
+                <span class="text-xs text-neutral-500 bg-neutral-100 px-2 py-0.5 rounded-md border border-neutral-200">
+                    {tech}
+                </span>
+            ))
+        }
+    </div>
+</li>

@@ -23,6 +23,10 @@ export const jobs: Job[] = [
     startDate:"Jan 1, 2024",
     endDate:"Dec 31, 2025",
     location: "Stockholm, Sweden",
-    points: ["Redesigned www.medieteknik.com from scratch", "Optimized backend for costs and saved around 2.900,00 SEK in annual costs"]
+    points: [
+      "Redesigned www.medieteknik.com from scratch",
+      "Reduced the expenditure of the chapter's IT-related systems by roughly 290$/year (~85%).",
+      "Supporting the chapter with IT-related tasks for the organization's accounts."
+    ]
   }
 ]

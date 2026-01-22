@@ -4,23 +4,38 @@ import "../styles/global.css";
 const { job } = Astro.props as { job: Job };
 ---
 
-<li
-    class="w-full flex gap-2 border rounded-md border-yellow-400/20 shadow-sm shadow-yellow-400/20"
->
-    <img src={job.imgSrc} class="size-24 p-1 bg-white rounded-md" />
-    <div class="mt-auto w-full">
-        <div class="flex gap-1 items-center justify-between">
-            <h4 class="text-lg font-bold">
+<li class="w-full flex gap-4">
+    <a href={job.jobLink} target="_blank" class="shrink-0">
+        <img
+            src={job.imgSrc}
+            alt={job.jobTitle}
+            class="size-12 rounded-sm border border-neutral-200 object-cover"
+        />
+    </a>
+    <div class="w-full flex flex-col">
+        <div class="flex justify-between items-baseline">
+            <a
+                href={job.jobLink}
+                target="_blank"
+                class="font-semibold text-neutral-900 hover:underline decoration-neutral-400 underline-offset-4"
+            >
                 {job.jobTitle}
-            </h4>
-            <div class="flex gap-1">
-                <p class="text-neutral-600">{job.startDate}</p>
-                <span>·</span>
-                <p class="text-neutral-600">{job.endDate}</p>
-            </div>
+            </a>
+            <p
+                class="google-sans-code-400 text-sm text-neutral-500 tabular-nums"
+            >
+                {job.startDate} - {job.endDate}
+            </p>
         </div>
         <p class="text-neutral-600 text-sm">
             {job.position}
         </p>
+        {
+            job.points.map((point) => (
+                <p class="text-neutral-700 text-sm mt-1 leading-relaxed">
+                    &FilledVerySmallSquare; {point}
+                </p>
+            ))
+        }
     </div>
 </li>
